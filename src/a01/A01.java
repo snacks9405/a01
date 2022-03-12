@@ -27,18 +27,10 @@ public class A01 {
      */
     public static SpellChecker initializeSpellChecker(String sampleLocation) {
         if (sampleLocation == null) {
-            return initializeSpellChecker();
+            return SpellChecker();
         } else {
             return new SpellChecker(sampleLocation);
         }
-    }// initializeSpellChecker method
-
-    /**
-     * winds up the spell checker 
-     * @return an instance of SpellChecker
-     */
-    public static SpellChecker initializeSpellChecker() {
-        return new SpellChecker();
     }// initializeSpellChecker method
 
     /**
