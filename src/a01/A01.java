@@ -14,32 +14,34 @@ package a01;
 
 public class A01 {
     public static void main(String[] args) throws Exception {
-        String sampleLocation = null; //change this to your txt test file :)
-
-        runSpellChecker(initializeSpellChecker(sampleLocation));
+        String sampleLocation = null; // change this to your txt test file :)
+        String dictionaryLocation = null;
+        runSpellChecker(initializeSpellChecker(sampleLocation, dictionaryLocation));
     }
 
     /**
-     * winds up the spell checker (with option to use custom txt)
+     * winds up the spell checker (with option to use custom txt/dictionary)
      * 
      * @param sampleLocation txt you're trying to spell check
      * @return an instance of SpellChecker
      */
-    public static SpellChecker initializeSpellChecker(String sampleLocation) {
+    public static SpellChecker initializeSpellChecker(String sampleLocation, String dictionaryLocation) {
         if (sampleLocation == null) {
-            return initializeSpellChecker();
+            if (dictionaryLocation == null) {
+                return new SpellChecker();
+            } else {
+                return new SpellChecker(null, dictionaryLocation);
+            }
         } else {
-            return new SpellChecker(sampleLocation);
+            if (dictionaryLocation == null) {
+                return new SpellChecker(sampleLocation);
+            } else {
+                return new SpellChecker(sampleLocation, dictionaryLocation);
+            }
         }
-    }// initializeSpellChecker method
+    }
 
-    /**
-     * winds up the spell checker 
-     * @return an instance of SpellChecker
-     */
-    public static SpellChecker initializeSpellChecker() {
-        return new SpellChecker();
-    }// initializeSpellChecker method
+    // initializeSpellChecker method
 
     /**
      * calls spellchecker to do tests and print results to terminal.
@@ -48,6 +50,6 @@ public class A01 {
      */
     public static void runSpellChecker(SpellChecker myChecker) {
         myChecker.performAllChecks();
-        myChecker.printOp(); //could have made this one call, but I like output separate if I can.
+        myChecker.printOp(); // could have made this one call, but I like output separate if I can.
     }// runSpellChecker method
-}//A01 class
+}// A01 class

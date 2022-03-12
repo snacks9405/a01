@@ -7,18 +7,18 @@ import net.datastructures.ArrayList;
 import net.datastructures.LinkedPositionalList;
 
 public class SpellChecker {
-    LinkedPositionalList<String> dictionary; 
-    LinkedPositionalList<String> sample; //initial sample with correct words removed
-    int initialSize; //size of initial sample before words were removed
-    ArrayList<char[]> misspelledWordsList; //char[] to easily manipulate the words
-    ArrayList<LinkedPositionalList<String>> recommendedSubs; //contains all words suitable to replace misspelled words
-    ArrayList<String[]> readyForPrint; //organized and alphabetized set of recommended words split by word being replaced
-    int numSwaps;
-    int numInsertions;
-    int numDeletions;
-    int numReplacements;
+    private LinkedPositionalList<String> dictionary; 
+    private LinkedPositionalList<String> sample; //initial sample with correct words removed
+    private int initialSize; //size of initial sample before words were removed
+    private ArrayList<char[]> misspelledWordsList; //char[] to easily manipulate the words
+    private ArrayList<LinkedPositionalList<String>> recommendedSubs; //contains all words suitable to replace misspelled words
+    private ArrayList<String[]> readyForPrint; //organized and alphabetized set of recommended words split by word being replaced
+    private int numSwaps;
+    private int numInsertions;
+    private int numDeletions;
+    private int numReplacements;
 
-    static String DEFAULT_SAMPLE_LOCATION = "example.txt"; //my test txt based on lab doc
+    private static final String DEFAULT_SAMPLE_LOCATION = "example.txt"; //my test txt based on lab doc
 
     /**
      * SpellChecker constructor
@@ -33,18 +33,37 @@ public class SpellChecker {
      * @param sampleLocation    location of desired txt to spell check
      */
     public SpellChecker(String sampleLocation) {
-        setDictionary();
-        setSample(sampleLocation);
-        initialSize = sample.size();
-        removeCorrectWords();
+        this(sampleLocation, null);
     }// SpellChecker constructor
 
     /**
-     * fills local dictionary with wordy words
+     * SpellChecker constructor overloaded to allow custom dictionary/sample execution
+     * 
+     * @param sampleLocation location of desired txt to spell check
+     * @param dictionaryLocation location of desired dictionary to reference
      */
-    private void setDictionary() {
+    public SpellChecker(String sampleLocation, String dictionaryLocation) {
+        if (dictionaryLocation == null) {
+            setDictionary();
+        } else {
+            setDictionary(dictionaryLocation);
+        }
+        setSample(sampleLocation);
+        initialSize = sample.size();
+        removeCorrectWords();
+    }
+
+    private void setDictionary(){
         dictionary = FileIO.getDictionary();
-    }// setDictionary method
+    }
+
+    /**
+     * fills local dictionary with *your choice* of wordy words
+     * @param dictionaryLocation
+     */
+    private void setDictionary(String dictionaryLocation) {
+        dictionary = FileIO.getDictionary(dictionaryLocation);
+    }// setDictionary location
 
     /**
      * fills local sample with wordy words

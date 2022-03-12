@@ -8,14 +8,26 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileIO {
+    final static String DICTIONARY_FILE_NAME = "jlawler-wordlist.txt";
+    final static String DELIMETER = "[^a-zA-Z]";
     /**
      * parse jlawler-wordlist.txt into LinkedPositionalList<String>
      * 
      * @return LinkedPositionalList<String> containing dictionary
      */
     public static LinkedPositionalList<String> getDictionary() {
-        String DICTIONARY_FILE_NAME = "jlawler-wordlist.txt";
         LinkedPositionalList<String> dictionary = buildLinkedList(openText(DICTIONARY_FILE_NAME), null);
+        return dictionary;
+    }// getDictionary method
+
+    /**
+     * overloaded to allow dictionary selection
+     * 
+     * @param dictionaryLocation
+     * @return 
+     */
+    public static LinkedPositionalList<String> getDictionary(String dictionaryLocation) {
+        LinkedPositionalList<String> dictionary = buildLinkedList(openText(dictionaryLocation), null);
         return dictionary;
     }// getDictionary method
 
@@ -26,7 +38,7 @@ public class FileIO {
      * @return LinkedPositionalList<String> containing sample
      */
     public static LinkedPositionalList<String> getSample(String fileName) {
-        LinkedPositionalList<String> sample = buildLinkedList(openText(fileName), "[^a-zA-Z]");
+        LinkedPositionalList<String> sample = buildLinkedList(openText(fileName), DELIMETER);
 
         return sample;
     }// getSample method
@@ -67,7 +79,7 @@ public class FileIO {
                 System.out.println(e.toString());
             }
         } else {
-            Scanner scan = new Scanner(input).useDelimiter("[^a-zA-Z]+");
+            Scanner scan = new Scanner(input).useDelimiter(delimeter);
             while (scan.hasNext()) {
                 wordList.addLast(scan.next());
             }
