@@ -27,7 +27,7 @@ public class A01 {
      */
     public static SpellChecker initializeSpellChecker(String sampleLocation) {
         if (sampleLocation == null) {
-            return SpellChecker();
+            return new SpellChecker();
         } else {
             return new SpellChecker(sampleLocation);
         }
