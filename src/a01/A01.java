@@ -27,11 +27,15 @@ public class A01 {
      */
     public static SpellChecker initializeSpellChecker(String sampleLocation, String dictionaryLocation) {
         if (sampleLocation == null) {
+<<<<<<< HEAD
             if (dictionaryLocation == null) {
                 return new SpellChecker();
             } else {
                 return new SpellChecker(null, dictionaryLocation);
             }
+=======
+            return new SpellChecker();
+>>>>>>> eb02034f26e9194616a9724095ae8d12bfe3ae13
         } else {
             if (dictionaryLocation == null) {
                 return new SpellChecker(sampleLocation);
@@ -41,8 +45,11 @@ public class A01 {
         }
     }
 
+<<<<<<< HEAD
     // initializeSpellChecker method
 
+=======
+>>>>>>> eb02034f26e9194616a9724095ae8d12bfe3ae13
     /**
      * calls spellchecker to do tests and print results to terminal.
      * 
@@ -52,4 +59,8 @@ public class A01 {
         myChecker.performAllChecks();
         myChecker.printOp(); // could have made this one call, but I like output separate if I can.
     }// runSpellChecker method
+<<<<<<< HEAD
 }// A01 class
+=======
+}//A01 class
+>>>>>>> eb02034f26e9194616a9724095ae8d12bfe3ae13
